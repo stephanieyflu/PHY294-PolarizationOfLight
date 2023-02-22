@@ -71,6 +71,7 @@ def plot(x, y, a, b, c, objective):
 		y_line = objective(x_line, a, b)
 
 	f, (ax1, ax2) = plt.subplots(1, 2)
+	f.set_size_inches(20, 8.5)
 
 	uncertaintyx = 0.00005 * np.ones(len(x))
 
