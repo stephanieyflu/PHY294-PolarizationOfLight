@@ -75,24 +75,30 @@ def plot(x, y, a, b, c, objective):
 	ax1.errorbar(x[::n], y[::n], xerr=uncertaintyx[::n], yerr=uncertainty[::n], fmt='o', capsize=1, elinewidth=1, markersize=3)
 	ax1.plot(x_line, y_line, '--', color='red', linewidth=1)
 	ax1.set_title('Light Intensity vs. Sensor Position (2 Polarizers)')
-	ax1.set_xlabel('Sensor Position (radians)')
 	ax1.set_ylabel('Light Intensity (volts)')
+
+	ax2.scatter(x[::n], residuals[::n], color='red', s=10)
+	ax2.set_title('Residuals for Light Intensity vs. Sensor Position (2 Polarizers)')
+	ax2.set_ylabel('Light Intensity (volts)')
+	ax2.legend(['Reduced Chi-Squared: '+str(round(red_chi_sq, 2))])
 
 	a = round(a, 2)
 	b = round(b, 2)
 
 	if objective == cosine:
 		c = round(c, 2)
-		ax1.legend(["f(x) = "+str(a)+"x^2 + "+str(b)+"x + "+str(c), "Intensity (V)"])
+		legend = "$f(x) = $"+str(a)+"$x^2 + $"+str(b)+"$x + $"+str(c)
+		ax1.legend([legend, "Intensity (V)"])
+		xlabel = 'Sensor Position [$cos(x)$]'
+		ax1.set_xlabel(xlabel)
+		ax2.set_xlabel(xlabel)
 	
 	if objective == cosinesq:
-		ax1.legend(["f(x) = "+str(a)+"x + "+str(b), "Intensity (V)"])
-
-	ax2.scatter(x[::n], residuals[::n], color='red', s=10)
-	ax2.set_title('Residuals for Light Intensity vs. Sensor Position (2 Polarizers)')
-	ax2.set_xlabel('Sensor Position (radians)')
-	ax2.set_ylabel('Light Intensity (volts)')
-	ax2.legend(['Reduced Chi-Squared: '+str(round(red_chi_sq, 2))])
+		legend = "$f(x) = $"+str(a)+"$x + $"+str(b)
+		ax1.legend([legend, "Intensity (V)"])
+		xlabel = 'Sensor Position [$cos^2(x)$]'
+		ax1.set_xlabel(xlabel)
+		ax2.set_xlabel(xlabel)
 
 	plt.savefig('Figures\ex1' + function + '.png')
 
