@@ -69,7 +69,11 @@ def plot(x, y, a, b, c, objective):
 	f, (ax1, ax2) = plt.subplots(1, 2)
 	f.set_size_inches(20, 8.5)
 
-	uncertaintyx = 0.00005 * np.ones(len(x))
+	# uncertaintyx = 0.00005 * np.ones(len(x))
+	if objective == cosine:
+		uncertaintyx = abs(-np.sin(x) * 0.00005)
+	if objective == cosinesq:
+		uncertaintyx = abs(-np.sin(2*x) * 0.00005)
 
 	n = 25
 	ax1.errorbar(x[::n], y[::n], xerr=uncertaintyx[::n], yerr=uncertainty[::n], fmt='o', capsize=1, elinewidth=1, markersize=3)
