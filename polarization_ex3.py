@@ -89,6 +89,16 @@ if __name__ == '__main__':
     # df['max_y'] = max_y.tolist()
     # np.savetxt(r'Ex3\ex3_vertical_max.txt', df.values)
     # plt.scatter(x, y)
-    max_x, max_y = load_data_max('Ex3\ex3_vertical_max.txt')
-    plt.scatter(max_x, max_y)
+    max_x, max_y = load_data_max('Ex3\ex3_nosquare_max.txt')
+    xerr = np.ones(len(max_x)) * 0.00005
+    yerr = np.ones(len(max_y)) * 0.03
+
+    f, ax = plt.subplots()
+    ax.errorbar(max_x, max_y, xerr=xerr, yerr=yerr, fmt='o', capsize=1, elinewidth=1, markersize=3)
+    ax.set_title('Intensity vs. Incident Angle (No Polarizer: Unpolarized Light)')
+    ax.set_xlabel('Angle (radians)')
+    ax.set_ylabel('Intensity (volts)')
+    ax.legend(["Intensity (V)"])
+    f.set_size_inches(8.5, 5)
+    plt.savefig('Figures\ex3nosquare.png')
     plt.show()
