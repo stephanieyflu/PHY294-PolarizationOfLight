@@ -67,7 +67,7 @@ def plot(x, y, a, b, c, objective):
 		function = 'cosinesq'
 
 	f, (ax1, ax2) = plt.subplots(1, 2)
-	f.set_size_inches(20, 8.5)
+	f.set_size_inches(20*0.6, 8.5*0.6)
 
 	# uncertaintyx = 0.00005 * np.ones(len(x))
 	if objective == cosine:
