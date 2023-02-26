@@ -90,11 +90,10 @@ def plot(x, y, a, b, c, objective):
 	ax2.set_ylabel('Light Intensity (volts)')
 	ax2.legend(['Reduced Chi-Squared: '+str(round(red_chi_sq, 2))])
 
-	a = round(a, 2)
-	b = round(b, 2)
-
 	if objective == sine2x:
-		c = round(c, 2)
+		a = round(a, 3)
+		b = round(b, 3)
+		c = round(c, 3)
 		legend = "$f(x) = $"+str(a)+"$x^2 + $"+str(b)+"$x + $"+str(c)
 		ax1.legend([legend, "Intensity (V)"])
 		xlabel = 'Sensor Position [$sin(2x)$]'
@@ -102,6 +101,8 @@ def plot(x, y, a, b, c, objective):
 		ax2.set_xlabel(xlabel)
 	
 	if objective == sinesq2x:
+		a = round(a, 3)
+		b = round(b, 3)
 		legend = "$f(x) = $"+str(a)+"$x + $"+str(b)
 		ax1.legend([legend, "Intensity (V)"])
 		xlabel = 'Sensor Position [$sin^2(2x)$]'
