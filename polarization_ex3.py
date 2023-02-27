@@ -100,7 +100,7 @@ if __name__ == '__main__':
     f, ax = plt.subplots()
     ax.errorbar(max_x, max_y, xerr=xerr, yerr=yerr, fmt='o', capsize=2, elinewidth=2, markersize=4)
     ax.set_title('Intensity vs. Incident Angle (No Polarizer: Unpolarized Light)')
-    ax.set_xlabel('2 $\cdot$ Angle (radians)')
+    ax.set_xlabel('2 $\cdot$ Angle (degrees)')
     ax.set_ylabel('Intensity (volts)')
     ax.legend(["Intensity (V)"])
     f.set_size_inches(7, 5)
