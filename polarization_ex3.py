@@ -73,7 +73,7 @@ def find_max(x, y):
 	Return arrays of the local maximum y-values and their corresponding x-values
 	'''
 
-	n = 4
+	n = 3
 	for i in range(n):
 		max_ind, _ = find_peaks(y)
 		x = x[max_ind]
@@ -82,23 +82,27 @@ def find_max(x, y):
 	return x, y
 
 if __name__ == '__main__':
-    x, y = load_data('Ex3\ex3_vertical_1.txt')
-    # max_x, max_y = find_max(x, y)
-    # df = pd.DataFrame()
-    # df['max_x'] = max_x.tolist()
-    # df['max_y'] = max_y.tolist()
-    # np.savetxt(r'Ex3\ex3_vertical_max.txt', df.values)
-    # plt.scatter(x, y)
-    max_x, max_y = load_data_max('Ex3\ex3_nosquare_max.txt')
+    '''
+    x, y = load_data('Kath/no.txt')
+    max_x, max_y = find_max(x, y)
+    df = pd.DataFrame()
+    df['max_x'] = max_x.tolist()
+    df['max_y'] = max_y.tolist()
+    np.savetxt(r'Kath/no_max.txt', df.values)
+    plt.scatter(x, y)
+    plt.scatter(max_x, max_y)
+    plt.show()
+    '''
+    max_x, max_y = load_data_max('Kath/no_max.txt')
     xerr = np.ones(len(max_x)) * 0.00005
     yerr = np.ones(len(max_y)) * 0.03
 
     f, ax = plt.subplots()
-    ax.errorbar(max_x, max_y, xerr=xerr, yerr=yerr, fmt='o', capsize=1, elinewidth=1, markersize=3)
+    ax.errorbar(max_x, max_y, xerr=xerr, yerr=yerr, fmt='o', capsize=2, elinewidth=2, markersize=4)
     ax.set_title('Intensity vs. Incident Angle (No Polarizer: Unpolarized Light)')
-    ax.set_xlabel('Angle (radians)')
+    ax.set_xlabel('2 $\cdot$ Angle (radians)')
     ax.set_ylabel('Intensity (volts)')
     ax.legend(["Intensity (V)"])
-    f.set_size_inches(8.5, 5)
-    plt.savefig('Figures\ex3nosquare.png')
+    f.set_size_inches(7, 5)
+    plt.savefig('Figures/no.png')
     plt.show()
